@@ -9,7 +9,7 @@ description: |
 type: app
 grade: stable
 confinement: strict
-icon: snap/gui/runelite.png
+icon: gui/runelite.png
 license: BSD-2-Clause
 
 parts:
@@ -23,9 +23,9 @@ parts:
       - libxtst6
 
   runelite:
-    plugin: dump
-    source-type: local
-    source: target/
+    plugin: nil # Cannot use dump due to limited source-type support
+    build-packages: 
+      - wget
     stage-packages:
       - libglu1-mesa
       - libpulse0
@@ -33,13 +33,11 @@ parts:
       - libasound2-plugins
       - libnotify-bin
     override-pull: |
-      snapcraftctl pull
-      find . -not -name 'RuneLite.jar' -delete
-      if [ ! -f RuneLite.jar ]
-      then
-        echo "Run maven prior to running snapcraft!"
-        exit 1
-      fi
+      wget https://github.com/runelite/launcher/releases/download/2.4.4/RuneLite.jar -O $SNAPCRAFT_PART_SRC/RuneLite.jar
+      echo "7e06fa3526a75ea0ece3f3e74f3d83ee781b379073ba290d028ee43a6945ad9b $SNAPCRAFT_PART_SRC/RuneLite.jar" | sha256sum --check || exit 1 # Check hash manually, due to nil plugin
+    override-build: |
+      cp $SNAPCRAFT_PART_BUILD/RuneLite.jar $SNAPCRAFT_PART_INSTALL/RuneLite.jar
+      chmod +x $SNAPCRAFT_PART_INSTALL/RuneLite.jar
 
   alsa-pulseaudio:
     plugin: dump
