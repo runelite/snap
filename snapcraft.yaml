@@ -11,6 +11,7 @@ grade: stable
 confinement: strict
 icon: gui/runelite.png
 license: BSD-2-Clause
+compression: lzo
 
 parts:
   adoptopenjdk:
