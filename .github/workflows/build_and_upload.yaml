@@ -1,0 +1,30 @@
+name: Build and upload snap
+
+on:
+  push:
+    tags:
+      - '*'
+
+jobs:
+  build-and-upload:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    # checkout clobbers tags when run on a tag ref https://github.com/actions/checkout/issues/882
+    - name: Correct git tags
+      run: git fetch --tags --force
+    - uses: snapcore/action-build@v1
+      id: build
+    - uses: actions/upload-artifact@v2
+      with:
+        name: RuneLite.snap
+        path: ${{ steps.build.outputs.snap}}
+    - uses: snapcore/action-publish@v1
+      env:
+        SNAPCRAFT_STORE_CREDENTIALS: ${{ secrets.STORE_LOGIN }}
+        # STORE_LOGIN generated with:
+        # snapcraft export-login --snaps=runelite --acls package_access,package_push,package_update,package_release snap_token.txt
+      with:
+        snap: ${{ steps.build.outputs.snap }}

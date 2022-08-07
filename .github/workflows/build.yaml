@@ -1,0 +1,23 @@
+name: Build snap
+
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - uses: snapcore/action-build@v1
+      id: build
+    - uses: actions/upload-artifact@v2
+      with:
+        name: RuneLite.snap
+        path: ${{ steps.build.outputs.snap}}
