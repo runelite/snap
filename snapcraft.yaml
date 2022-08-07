@@ -1,5 +1,5 @@
 name: runelite
-base: core20
+base: core22
 title: RuneLite
 version: git
 summary: A popular free, open-source and super fast client for Old School RuneScape
@@ -34,11 +34,11 @@ parts:
       - libasound2-plugins
       - libnotify-bin
     override-pull: |
-      wget https://github.com/runelite/launcher/releases/download/2.4.4/RuneLite.jar -O $SNAPCRAFT_PART_SRC/RuneLite.jar
-      echo "7e06fa3526a75ea0ece3f3e74f3d83ee781b379073ba290d028ee43a6945ad9b $SNAPCRAFT_PART_SRC/RuneLite.jar" | sha256sum --check || exit 1 # Check hash manually, due to nil plugin
+      wget https://github.com/runelite/launcher/releases/download/2.4.4/RuneLite.jar -O $CRAFT_PART_SRC/RuneLite.jar
+      echo "7e06fa3526a75ea0ece3f3e74f3d83ee781b379073ba290d028ee43a6945ad9b $CRAFT_PART_SRC/RuneLite.jar" | sha256sum --check || exit 1 # Check hash manually, due to nil plugin
     override-build: |
-      cp $SNAPCRAFT_PART_BUILD/RuneLite.jar $SNAPCRAFT_PART_INSTALL/RuneLite.jar
-      chmod +x $SNAPCRAFT_PART_INSTALL/RuneLite.jar
+      cp $CRAFT_PART_BUILD/RuneLite.jar $CRAFT_PART_INSTALL/RuneLite.jar
+      chmod +x $CRAFT_PART_INSTALL/RuneLite.jar
 
   alsa-pulseaudio:
     plugin: dump
@@ -75,7 +75,7 @@ apps:
       - x11
       - opengl
 
-    extensions: [ gnome-3-38 ]
+    extensions: [ gnome ]
     environment:
       _JAVA_OPTIONS: -Duser.home="$SNAP_USER_COMMON"
       ALSA_CONFIG_PATH: "$SNAP/etc/asound.conf"
