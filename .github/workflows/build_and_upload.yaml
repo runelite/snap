@@ -17,7 +17,7 @@ jobs:
       run: git fetch --tags --force
     - uses: snapcore/action-build@v1
       id: build
-    - uses: actions/upload-artifact@v2
+    - uses: actions/upload-artifact@v3
       with:
         name: RuneLite.snap
         path: ${{ steps.build.outputs.snap}}
