@@ -16,8 +16,8 @@ compression: lzo
 parts:
   adoptopenjdk:
     plugin: dump
-    source: https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.16%2B8/OpenJDK11U-jre_x64_linux_hotspot_11.0.16_8.tar.gz
-    source-checksum: "sha256/74988677f1e1692f8f482ae5f75814b908bb3cf5a8b7d9872873a42e330e7595"
+    source: https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.18%2B10/OpenJDK11U-jre_x64_linux_hotspot_11.0.18_10.tar.gz
+    source-checksum: "sha256/0e7b196ef8603ac3d38caaf7768b7b0a3c613d60e15a6511bcfb2c894b609e99"
     stage-packages:
       - libxi6
       - libxrender1
