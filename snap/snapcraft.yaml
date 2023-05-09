@@ -16,8 +16,8 @@ compression: lzo
 parts:
   adoptopenjdk:
     plugin: dump
-    source: https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.18%2B10/OpenJDK11U-jre_x64_linux_hotspot_11.0.18_10.tar.gz
-    source-checksum: "sha256/0e7b196ef8603ac3d38caaf7768b7b0a3c613d60e15a6511bcfb2c894b609e99"
+    source: https://github.com/adoptium/temurin11-binaries/releases/download/jdk-11.0.19%2B7/OpenJDK11U-jre_x64_linux_hotspot_11.0.19_7.tar.gz
+    source-checksum: "sha256/32dcf760664f93531594b72ce9226e9216567de5705a23c9ff5a77c797948054"
     stage-packages:
       - libxi6
       - libxrender1
@@ -34,8 +34,8 @@ parts:
       - libasound2-plugins
       - libnotify-bin
     override-pull: |
-      wget https://github.com/runelite/launcher/releases/download/2.6.3/RuneLite.jar -O $CRAFT_PART_SRC/RuneLite.jar
-      echo "b4db68442950be4a44c07d02debc851dda6e48f66f1969f22cc01b5423097f3c $CRAFT_PART_SRC/RuneLite.jar" | sha256sum --check || exit 1 # Check hash manually, due to nil plugin
+      wget https://github.com/runelite/launcher/releases/download/2.6.4/RuneLite.jar -O $CRAFT_PART_SRC/RuneLite.jar
+      echo "ec497614d03a223a860c247c64615ed3c0d8287025c9cab4ba97063bccb03d60 $CRAFT_PART_SRC/RuneLite.jar" | sha256sum --check || exit 1 # Check hash manually, due to nil plugin
     override-build: |
       cp $CRAFT_PART_BUILD/RuneLite.jar $CRAFT_PART_INSTALL/RuneLite.jar
       chmod +x $CRAFT_PART_INSTALL/RuneLite.jar
