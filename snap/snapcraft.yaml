@@ -34,8 +34,8 @@ parts:
       - libasound2-plugins
       - libnotify-bin
     override-pull: |
-      wget https://github.com/runelite/launcher/releases/download/2.6.10/RuneLite.jar -O $CRAFT_PART_SRC/RuneLite.jar
-      echo "b73561c714ad58984669f0b909731d4cc4c6bacdbf07d227006243d1b566138b $CRAFT_PART_SRC/RuneLite.jar" | sha256sum --check || exit 1 # Check hash manually, due to nil plugin
+      wget https://github.com/runelite/launcher/releases/download/2.6.11/RuneLite.jar -O $CRAFT_PART_SRC/RuneLite.jar
+      echo "5dee3b3f371d9e8dd846847ea2791a21b42d9cd030183631fd0a3112c4dd11fa $CRAFT_PART_SRC/RuneLite.jar" | sha256sum --check || exit 1 # Check hash manually, due to nil plugin
     override-build: |
       cp $CRAFT_PART_BUILD/RuneLite.jar $CRAFT_PART_INSTALL/RuneLite.jar
       chmod +x $CRAFT_PART_INSTALL/RuneLite.jar
