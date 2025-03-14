@@ -17,7 +17,7 @@ jobs:
         fetch-depth: 0
     - uses: snapcore/action-build@v1
       id: build
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: RuneLite.snap
         path: ${{ steps.build.outputs.snap}}
